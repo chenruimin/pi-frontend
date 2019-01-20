@@ -1,3 +1,6 @@
+// login page
+import Login from '@/pages/Login.vue';
+
 import DashboardLayout from "@/layout/dashboard/DashboardLayout.vue";
 // GeneralViews
 import NotFound from "@/pages/NotFoundPage.vue";
@@ -12,6 +15,11 @@ import Typography from "@/pages/Typography.vue";
 import TableList from "@/pages/TableList.vue";
 
 const routes = [
+  {
+    path: "/login",
+    name: "login",
+    component: Login
+  },
   {
     path: "/",
     component: DashboardLayout,

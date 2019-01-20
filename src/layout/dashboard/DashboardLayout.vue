@@ -33,6 +33,12 @@
             <p>Settings</p>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" @click="handleLogout">
+            <i class="ti-close"></i>
+            <p>Logout</p>
+          </a>
+        </li>
         <li class="divider"></li>
       </mobile-menu>
     </side-bar>
@@ -61,11 +67,27 @@ export default {
     DashboardContent,
     MobileMenu
   },
+  computed: {
+    isLoggedIn () {
+      return this.$store.state.isLoggedIn;
+    },
+  },
+  watch: {
+    isLoggedIn (val) {
+      if (!val) {
+        this.$router.push({ path: '/login' });
+      }
+    }
+  },
   methods: {
     toggleSidebar() {
       if (this.$sidebar.showSidebar) {
         this.$sidebar.displaySidebar(false);
       }
+    },
+    handleLogout(e) {
+      e.preventDefault();
+      this.$store.dispatch('logout');
     }
   }
 };

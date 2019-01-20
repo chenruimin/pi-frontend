@@ -37,6 +37,12 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" @click="handleLogout">
+              <i class="ti-close"></i>
+              <p>Logout</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div></nav>
@@ -69,6 +75,10 @@ export default {
     },
     hideSidebar() {
       this.$sidebar.displaySidebar(false);
+    },
+    handleLogout(e) {
+      e.preventDefault();
+      this.$store.dispatch('logout');
     }
   }
 };
