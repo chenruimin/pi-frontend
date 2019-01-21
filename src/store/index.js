@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import { Message } from 'element-ui';
 import request from '@/utils/request';
+import dashboard from './modules/dashboard';
 
 Vue.use(Vuex);
 
@@ -47,5 +48,8 @@ export default new Vuex.Store({
     logout ({ commit }) {
       commit('setLogout');
     }
+  },
+  modules: {
+    dashboard,
   },
 });

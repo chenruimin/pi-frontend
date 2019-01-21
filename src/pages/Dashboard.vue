@@ -1,5 +1,12 @@
 <template>
   <div>
+    <div class="date-picker">
+      <el-date-picker
+        :value="dateRange"
+        type="daterange"
+        @input="handleDateRangeChange">
+      </el-date-picker>
+    </div>
 
     <!--Stats cards-->
     <div class="row">
@@ -189,8 +196,33 @@ export default {
         options: {}
       }
     };
+  },
+  computed: {
+    dateRange () {
+      return this.$store.state.dashboard.dateRange;
+    },
+    chartData () {
+      return this.$store.state.dashboard.chartData;
+    },
+  },
+  watch: {
+    chartData (val) {
+      this.statsCards[0] = val;
+      this.statsCards = [...this.statsCards];
+    }
+  },
+  methods: {
+    handleDateRangeChange (val) {
+      this.$store.dispatch('dashboard/setDateRangeAndFetchChartData', val);
+    }
   }
 };
 </script>
-<style>
+
+<style lang="scss">
+.date-picker {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 0;
+}
 </style>
